@@ -1,4 +1,3 @@
-/* Reset básico */
 * {
     margin: 0;
     padding: 0;
@@ -6,9 +5,9 @@
     font-family: "Rajdhani", sans-serif;
 }
 
-/* Fundo da Página */
+
 body {
-    background-color: #111; /* Preto */
+    background-color: #111; 
     color: white;
     display: flex;
     justify-content: center;
@@ -16,7 +15,7 @@ body {
     height: 100vh;
 }
 
-/* Container do Login */
+
 .login-container {
     background-color: #d2242a; 
     padding: 40px;
@@ -25,13 +24,12 @@ body {
     box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
 }
 
-/* Título */
+
 .login-container h1 {
     font-size: 32px;
     margin-bottom: 20px;
 }
 
-/* Campos de Entrada */
 .login-container input {
     width: 100%;
     padding: 10px;
@@ -42,7 +40,6 @@ body {
     text-align: center;
 }
 
-/* Botão de Login */
 .login-container button {
     background-color: black;
     color: white;
