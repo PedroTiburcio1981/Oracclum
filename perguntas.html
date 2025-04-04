@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Caixa de Perguntas - Flamengo</title>
+    <meta name="description" content="Veja as perguntas enviadas sobre o Flamengo.">
+    <meta name="author" content="Pedro Tiburcio">
+</head>
+
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo-titulo">
+                <a href="index.html">
+                    <img src="images/clube-de-regatas-flamengo-do-rio-de-janeiro-rj-logo.png" alt="Escudo">
+                </a>
+                <h1>O Mais Querido</h1>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="conteudo">
+            <h2>Perguntas Enviadas</h2>
+            <div class="lista-container">
+                <ul id="lista-perguntas" class="lista-perguntas"></ul>
+            </div>
+            <div class="centralizado">
+                <button id="botao-limpar" class="botao">Limpar Perguntas</button>
+                <a href="index.html">
+                    <button class="botao">Voltar</button>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let listaPerguntas = document.getElementById("lista-perguntas");
+            let perguntasSalvas = JSON.parse(localStorage.getItem("perguntas")) || [];
+
+            function renderizarPerguntas() {
+                listaPerguntas.innerHTML = "";
+                if (perguntasSalvas.length === 0) {
+                    listaPerguntas.innerHTML = "<p class='nenhuma-pergunta'>Nenhuma pergunta enviada ainda.</p>";
+                } else {
+                    perguntasSalvas.forEach((item, index) => {
+                        let li = document.createElement("li");
+                        li.classList.add("pergunta-item");
+                        li.innerHTML = `
+                            <div class="pergunta-box">
+                                <p><strong>Pergunta:</strong> ${item.pergunta}</p>
+                                <p><strong>Resposta:</strong> ${item.resposta ? item.resposta : "Ainda não respondida."}</p>
+                                <textarea id="resposta-${index}" class="resposta-textarea" placeholder="Digite sua resposta aqui..."></textarea>
+                                <button class="botao-responder" data-index="${index}">Responder</button>
+                            </div>
+                        `;
+                        listaPerguntas.appendChild(li);
+                    });
+                }
+            }
+
+            renderizarPerguntas();
+
+            document.querySelectorAll(".botao-responder").forEach(botao => {
+                botao.addEventListener("click", function() {
+                    let index = this.getAttribute("data-index");
+                    let respostaTexto = document.getElementById(`resposta-${index}`).value.trim();
+                    
+                    if (respostaTexto === "") {
+                        alert("Digite uma resposta antes de enviar!");
+                        return;
+                    }
+                    
+                    perguntasSalvas[index].resposta = respostaTexto;
+                    localStorage.setItem("perguntas", JSON.stringify(perguntasSalvas));
+                    renderizarPerguntas();
+                });
+            });
+
+            document.getElementById("botao-limpar").addEventListener("click", function() {
+                if (confirm("Tem certeza que deseja apagar todas as perguntas?")) {
+                    localStorage.removeItem("perguntas");
+                    perguntasSalvas = [];
+                    renderizarPerguntas();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

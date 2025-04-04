@@ -1,0 +1,124 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Rajdhani", sans-serif;
+  }
+  
+  body {
+    background-color: #efefef;
+    color: #222222;
+    height: 100vh;
+  }
+  
+  /* Container principal */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Header */
+  header {
+    background-color: #d2242a;
+    padding: 20px 4%;
+  }
+  
+  .header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .logo-titulo {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  
+  .logo-titulo img {
+    width: 100px;
+  }
+  
+  .logo-titulo h1 {
+    color: white;
+    font-size: 50px;
+  }
+  
+  /* Botões */
+  .botao-container {
+    display: flex;
+    align-items: center;
+    margin-top: -10px; /* Ajuste vertical */
+  }
+  
+  .botao {
+    padding: 10px 40px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background-color: rgb(129, 17, 17);
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  
+  .botao:hover {
+    background-color: #8b1216;
+    transform: scale(1.05);
+  }
+  
+  /* Conteúdo principal */
+  .conteudo {
+    text-align: center;
+    padding: 40px;
+  }
+  
+  .conteudo h2 {
+    font-size: 38px;
+  }
+  
+  .conteudo h2 span {
+    color: red;
+  }
+  
+  .conteudo p {
+    font-size: 24px;
+    margin-top: 10px;
+  }
+  
+  /* Imagem */
+  .imagem-container {
+    text-align: center;
+    margin: 20px 0;
+  }
+  
+  .imagem-container img {
+    border-radius: 30px;
+    animation: flutua 2s ease-in-out infinite alternate;
+  }
+  
+  /* Animação */
+  @keyframes flutua {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(20px); }
+  }
+  
+  /* Caixa de pergunta */
+  .pergunta-container {
+    width: 300px;
+    margin: 20px auto;
+    text-align: center;
+  }
+  
+  .pergunta-textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+  }
+  

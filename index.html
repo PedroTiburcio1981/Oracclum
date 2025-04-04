@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Tire suas dúvidas sobre o Clube de Regatas do Flamengo!</title>
+    <meta name="description" content="Site ideal para tirar todas suas dúvidas sobre nosso Mengão!">
+    <meta name="author" content="Pedro Tiburcio">
+</head>
+
+<body>
+    <header>    
+        <div class="container header-content">
+            <div class="logo-titulo">
+                <a href="#">
+                    <img src="images/clube-de-regatas-flamengo-do-rio-de-janeiro-rj-logo.png" alt="Escudo">
+                </a>
+                <h1>O Mais Querido</h1>
+            </div>
+            <div class="botao-container">
+                <a href="login.html" id="link-login">
+                    <button class="botao" id="botao-login">Login</button>
+                </a>
+                <button class="botao" id="botao-logout" style="display: none;">Logout</button>
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        <section class="conteudo">
+            <div class="text-container">
+                <h2>Bem-vindo ao site tira-dúvidas do nosso Mengão<span>!</span></h2>
+                <p>Aqui, você pode fazer seu login e registrar sua pergunta para que nossos colaboradores te atendam de forma rápida e eficiente.</p>
+            </div>
+            <div class="imagem-container">
+                <a href="#">
+                    <img src="images/ChatGPT Image 1 de abr. de 2025, 17_37_03 (1).png" alt="Imagem Flamengo">
+                </a>
+            </div>
+            <div class="pergunta-container">
+                <textarea id="campo-pergunta" class="pergunta-textarea" placeholder="Digite sua pergunta aqui..."></textarea>
+                <button id="botao-enviar" class="botao">Enviar Pergunta</button>
+            </div>
+            <div class="pergunta-container">
+                <button id="botao-caixa" class="botao">Caixa de Perguntas</button>
+            </div>
+            <hr>
+            <a href="https://www.flamengo.com.br/" target="_blank">Venha acompanhar o Mais Querido de perto!</a>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let usuarioLogado = localStorage.getItem("usuarioLogado");
+            let botaoLogin = document.getElementById("botao-login");
+            let botaoLogout = document.getElementById("botao-logout");
+            let linkLogin = document.getElementById("link-login");
+
+            if (usuarioLogado) {
+                botaoLogin.style.display = "none";
+                linkLogin.style.display = "none";
+                botaoLogout.style.display = "inline-block";
+            } else {
+                botaoLogin.style.display = "inline-block";
+                linkLogin.style.display = "inline-block";
+                botaoLogout.style.display = "none";
+            }
+
+            botaoLogout.addEventListener("click", function() {
+                localStorage.removeItem("usuarioLogado");
+                alert("Você saiu da conta.");
+                window.location.href = "index.html";
+            });
+        });
+
+        document.getElementById("botao-enviar").addEventListener("click", function() {
+            let usuarioLogado = localStorage.getItem("usuarioLogado");
+            if (!usuarioLogado) {
+                alert("Você precisa estar logado para enviar uma pergunta!");
+                return;
+            }
+
+            let pergunta = document.getElementById("campo-pergunta").value.trim();
+            if (pergunta === "") {
+                alert("Digite uma pergunta antes de enviar!");
+                return;
+            }
+            let perguntasSalvas = JSON.parse(localStorage.getItem("perguntas")) || [];
+            perguntasSalvas.push({ pergunta: pergunta, resposta: "" });
+            localStorage.setItem("perguntas", JSON.stringify(perguntasSalvas));
+            alert("Pergunta enviada com sucesso!");
+            document.getElementById("campo-pergunta").value = "";
+        });
+
+        document.getElementById("botao-caixa").addEventListener("click", function() {
+            let usuarioLogado = localStorage.getItem("usuarioLogado");
+            if (!usuarioLogado) {
+                alert("Você precisa estar logado para acessar a Caixa de Perguntas!");
+                return;
+            }
+            window.location.href = "perguntas.html";
+        });
+    </script>
+</body>
+</html>

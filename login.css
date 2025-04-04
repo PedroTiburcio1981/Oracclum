@@ -1,0 +1,61 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Rajdhani", sans-serif;
+}
+
+/* Fundo da Página */
+body {
+    background-color: #111; /* Preto */
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Container do Login */
+.login-container {
+    background-color: #d2242a; 
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+}
+
+/* Título */
+.login-container h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+/* Campos de Entrada */
+.login-container input {
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* Botão de Login */
+.login-container button {
+    background-color: black;
+    color: white;
+    font-size: 20px;
+    padding: 12px;
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.login-container button:hover {
+    background-color: #222;
+    transform: scale(1.05);
+}
